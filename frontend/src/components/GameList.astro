@@ -1,0 +1,61 @@
+---
+import steamDeals from '../data/steam-deals.json';
+---
+
+
+<ul class="games-list">
+  {steamDeals.map(game => {
+    const gameDiscount = game.discountPercentage ?? 0;
+    return (
+            <li class="game-item">
+                <p class="game-title">{game.title}</p>
+                <p class="discount-percentage">
+                  {game.isDiscounted ? (
+                          <span style={{ color: 'green' }}>{`${gameDiscount}%`}</span>
+                  ) : (
+                    'N/A'
+                  )}
+                </p>
+            </li>
+    );
+  })}
+</ul>
+
+
+
+
+<script type="module">
+  let discountValue = 50, searchFieldString = "";
+
+  const discountSlider = document.getElementById("discount-slider");
+  discountSlider.addEventListener("input", event => {
+      discountValue = parseInt(event.target.value);
+      filter()
+    }
+  );
+  const searchField = document.getElementById("simple-search");
+  searchField.addEventListener("input", event => {
+      searchFieldString = event.target.value;
+      filter()
+    }
+  );
+  const filter = () => {
+
+
+    document.querySelectorAll(".game-item").forEach(game => {
+
+      const gameName = game.querySelector("p")?.textContent || "";
+      const gameDiscount = parseInt(game.querySelector(".discount-percentage")?.textContent || "0");
+      const filterOnSearch = gameName.toLowerCase().includes(searchFieldString.toLowerCase());
+      const filterOnDiscount = gameDiscount >= discountValue;
+
+      if (filterOnSearch && filterOnDiscount) {
+        game.classList.remove("hidden");
+      } else {
+        game.classList.add("hidden");
+      }
+    });
+  };
+
+</script>
+

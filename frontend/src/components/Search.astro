@@ -1,0 +1,25 @@
+---
+
+const { id } = Astro.props;
+
+---
+
+<div>
+   <input
+      type="text"
+      id={id}
+      placeholder="Zoeken op game naam."
+      class="search-input"
+
+    />
+</div>
+
+<style>
+    .search-input {
+        color: black;
+        background-color: white;
+        border: 1px solid black;
+        margin-left: 0;
+        border-radius: 4px;
+    }
+</style>

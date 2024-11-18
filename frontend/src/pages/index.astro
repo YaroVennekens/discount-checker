@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Search from '../components/Search.astro';
+import DiscountRangeSlider from '../components/DiscountRangeSlider.astro';
+import steamDeals from '../data/steam-deals.json';
+import GameList from '../components/GameList.astro'
+
+---
+
+<Layout title="Discount.">
+	<main>
+		<div class="container mx-auto py-4 space-y-8">
+
+
+
+			<div class="grid grid-cols-2 gap-4">
+				<Search id="simple-search" />
+				<DiscountRangeSlider />
+			</div>
+			<GameList></GameList>
+
+			</div>
+
+
+	</main>
+</Layout>
+
+
+<style>
+	main {
+		margin: auto;
+		padding: 1rem;
+		width: 800px;
+		max-width: calc(100% - 2rem);
+		color: black;
+		font-size: 20px;
+		line-height: 1.6;
+	}
+
+	.game-list {
+		list-style-type: none;
+		padding: 0;
+	}
+
+	.game-item {
+		display: flex;
+		justify-content: space-between;
+		padding: 0.5rem 0;
+	}
+
+	.game-title {
+		flex: 1;
+	}
+
+	.discount-percentage {
+		margin-left: 1rem;
+		text-align: right;
+	}
+	.hidden {
+		display: none;
+	}
+
+</style>
